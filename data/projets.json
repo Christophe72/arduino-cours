@@ -1,0 +1,98 @@
+[
+  {
+    "id": "led-clignotante",
+    "title": "LED Clignotante",
+    "description": "Votre premier projet : faire clignoter une LED",
+    "difficulty": "Débutant",
+    "duration": "30 min",
+    "icon": "💡",
+    "components": [
+      "Arduino Uno",
+      "LED",
+      "Résistance 220Ω",
+      "Breadboard",
+      "Fils de connexion"
+    ],
+    "instructions": [
+      "Connectez la LED à la broche 13 de l'Arduino",
+      "Ajoutez une résistance de 220Ω en série avec la LED",
+      "Téléversez le code sur l'Arduino",
+      "Observez la LED clignoter"
+    ],
+    "code": "void setup() {\n  pinMode(13, OUTPUT);\n}\n\nvoid loop() {\n  digitalWrite(13, HIGH);\n  delay(1000);\n  digitalWrite(13, LOW);\n  delay(1000);\n}",
+    "circuit": "/images/led-circuit.png"
+  },
+  {
+    "id": "capteur-temperature",
+    "title": "Capteur de Température",
+    "description": "Lire la température avec un capteur DHT22",
+    "difficulty": "Intermédiaire",
+    "duration": "1h",
+    "icon": "🌡️",
+    "components": [
+      "Arduino Uno",
+      "Capteur DHT22",
+      "Résistance 10kΩ (pull-up)",
+      "Écran LCD 16x2",
+      "Breadboard",
+      "Fils de connexion"
+    ],
+    "instructions": [
+      "Connectez le capteur DHT22 à la broche 2",
+      "Ajoutez une résistance pull-up de 10kΩ",
+      "Connectez l'écran LCD aux broches 12, 11, 5, 4, 3, 2",
+      "Installez la bibliothèque DHT",
+      "Téléversez le code et observez les mesures"
+    ],
+    "code": "#include <DHT.h>\n#include <LiquidCrystal.h>\n\n#define DHTPIN 2\n#define DHTTYPE DHT22\n\nDHT dht(DHTPIN, DHTTYPE);\nLiquidCrystal lcd(12, 11, 5, 4, 3, 2);\n\nvoid setup() {\n  lcd.begin(16, 2);\n  dht.begin();\n  lcd.print(\"Temp & Humidity\");\n}\n\nvoid loop() {\n  float temp = dht.readTemperature();\n  float humidity = dht.readHumidity();\n  \n  lcd.setCursor(0, 1);\n  lcd.print(temp);\n  lcd.print(\"C \");\n  lcd.print(humidity);\n  lcd.print(\"%\");\n  \n  delay(2000);\n}",
+    "circuit": "/images/dht22-circuit.png"
+  },
+  {
+    "id": "servomoteur",
+    "title": "Contrôle de Servomoteur",
+    "description": "Contrôler un servomoteur avec un potentiomètre",
+    "difficulty": "Intermédiaire",
+    "duration": "45 min",
+    "icon": "⚙️",
+    "components": [
+      "Arduino Uno",
+      "Servomoteur SG90",
+      "Potentiomètre 10kΩ",
+      "Breadboard",
+      "Fils de connexion"
+    ],
+    "instructions": [
+      "Connectez le servomoteur à la broche 9",
+      "Connectez le potentiomètre à la broche A0",
+      "Alimentez le servomoteur en 5V",
+      "Téléversez le code",
+      "Tournez le potentiomètre pour contrôler le servo"
+    ],
+    "code": "#include <Servo.h>\n\nServo myServo;\nint potPin = A0;\n\nvoid setup() {\n  myServo.attach(9);\n}\n\nvoid loop() {\n  int potValue = analogRead(potPin);\n  int angle = map(potValue, 0, 1023, 0, 180);\n  myServo.write(angle);\n  delay(15);\n}",
+    "circuit": "/images/servo-circuit.png"
+  },
+  {
+    "id": "esp32-web-server",
+    "title": "Serveur Web ESP32",
+    "description": "Créer un serveur web pour contrôler des LEDs",
+    "difficulty": "Avancé",
+    "duration": "2h",
+    "icon": "🌐",
+    "components": [
+      "ESP32",
+      "2 LEDs",
+      "2 Résistances 220Ω",
+      "Breadboard",
+      "Fils de connexion"
+    ],
+    "instructions": [
+      "Connectez les LEDs aux broches 2 et 4",
+      "Configurez votre réseau WiFi dans le code",
+      "Téléversez le code sur l'ESP32",
+      "Connectez-vous à l'adresse IP affichée",
+      "Contrôlez les LEDs via l'interface web"
+    ],
+    "code": "#include <WiFi.h>\n#include <WebServer.h>\n\nconst char* ssid = \"VotreWiFi\";\nconst char* password = \"VotreMotDePasse\";\n\nWebServer server(80);\n\nconst int led1 = 2;\nconst int led2 = 4;\n\nvoid setup() {\n  Serial.begin(115200);\n  pinMode(led1, OUTPUT);\n  pinMode(led2, OUTPUT);\n  \n  WiFi.begin(ssid, password);\n  while (WiFi.status() != WL_CONNECTED) {\n    delay(1000);\n    Serial.println(\"Connexion WiFi...\");\n  }\n  \n  Serial.println(WiFi.localIP());\n  \n  server.on(\"/\", handleRoot);\n  server.on(\"/led1on\", []() {\n    digitalWrite(led1, HIGH);\n    server.send(200, \"text/html\", \"LED 1 ON\");\n  });\n  server.on(\"/led1off\", []() {\n    digitalWrite(led1, LOW);\n    server.send(200, \"text/html\", \"LED 1 OFF\");\n  });\n  \n  server.begin();\n}\n\nvoid loop() {\n  server.handleClient();\n}\n\nvoid handleRoot() {\n  String html = \"<h1>ESP32 Control</h1>\";\n  html += \"<a href='/led1on'>LED 1 ON</a><br>\";\n  html += \"<a href='/led1off'>LED 1 OFF</a>\";\n  server.send(200, \"text/html\", html);\n}",
+    "circuit": "/images/esp32-web-circuit.png"
+  }
+]

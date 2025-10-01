@@ -1,0 +1,227 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: Inter, system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen;
+  }
+
+  * {
+    @apply selection:bg-blue-200 selection:text-blue-900;
+  }
+}
+
+@layer components {
+  /* Boutons améliorés */
+  .btn-primary {
+    @apply bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-xl 
+           hover:from-blue-700 hover:to-blue-800 transform hover:scale-105 
+           transition-all duration-200 shadow-lg hover:shadow-xl 
+           font-semibold border-0 focus:ring-4 focus:ring-blue-300 focus:outline-none;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-gray-700 px-6 py-3 rounded-xl border-2 border-gray-200 
+           hover:border-gray-300 hover:bg-gray-50 transform hover:scale-105 
+           transition-all duration-200 shadow-md hover:shadow-lg 
+           font-semibold focus:ring-4 focus:ring-gray-200 focus:outline-none;
+  }
+
+  .btn-success {
+    @apply bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-3 rounded-xl 
+           hover:from-green-700 hover:to-green-800 transform hover:scale-105 
+           transition-all duration-200 shadow-lg hover:shadow-xl 
+           font-semibold focus:ring-4 focus:ring-green-300 focus:outline-none;
+  }
+
+  .btn-warning {
+    @apply bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-xl 
+           hover:from-orange-600 hover:to-orange-700 transform hover:scale-105 
+           transition-all duration-200 shadow-lg hover:shadow-xl 
+           font-semibold focus:ring-4 focus:ring-orange-300 focus:outline-none;
+  }
+
+  /* Cartes améliorées */
+  .card {
+    @apply bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg border border-white/20 
+           hover:shadow-2xl hover:bg-white/90 transition-all duration-300 
+           transform hover:-translate-y-1;
+  }
+
+  .card-interactive {
+    @apply card cursor-pointer hover:scale-105;
+  }
+
+  .card-gradient {
+    @apply bg-gradient-to-br from-white to-blue-50/50 backdrop-blur-sm p-8 rounded-2xl 
+           shadow-xl border border-blue-100/50 hover:shadow-2xl hover:from-white hover:to-blue-50 
+           transition-all duration-300 transform hover:-translate-y-1;
+  }
+
+  /* Code block amélioré */
+  .code-block {
+    @apply bg-gradient-to-br from-gray-900 to-gray-800 text-green-400 p-6 rounded-2xl 
+           overflow-x-auto shadow-2xl border border-gray-700 relative;
+  }
+
+  .code-block::before {
+    content: "";
+    @apply absolute top-0 left-0 right-0 h-8 bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 
+           rounded-t-2xl opacity-20;
+  }
+
+  /* Badges améliorés */
+  .badge-primary {
+    @apply bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 rounded-full 
+           text-sm font-semibold shadow-lg border border-blue-400/30;
+  }
+
+  .badge-success {
+    @apply bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-full 
+           text-sm font-semibold shadow-lg border border-green-400/30;
+  }
+
+  .badge-warning {
+    @apply bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 py-2 rounded-full 
+           text-sm font-semibold shadow-lg border border-orange-400/30;
+  }
+
+  .badge-purple {
+    @apply bg-gradient-to-r from-purple-500 to-purple-600 text-white px-4 py-2 rounded-full 
+           text-sm font-semibold shadow-lg border border-purple-400/30;
+  }
+
+  /* Navigation améliorée */
+  .nav-link {
+    @apply text-white/90 hover:text-white px-4 py-2 rounded-lg 
+           hover:bg-white/10 transition-all duration-200 font-medium
+           focus:ring-2 focus:ring-white/30 focus:outline-none;
+  }
+
+  .nav-brand {
+    @apply text-white text-2xl font-bold tracking-wide 
+           hover:text-blue-100 transition-colors duration-200;
+  }
+
+  /* Animations */
+  .fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+  }
+
+  .slide-up {
+    animation: slideUp 0.8s ease-out;
+  }
+
+  .scale-in {
+    animation: scaleIn 0.5s ease-out;
+  }
+
+  /* Conteneurs de contenu */
+  .content-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-header {
+    @apply text-4xl md:text-5xl font-bold text-gray-800 mb-4 
+           bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+  }
+
+  .section-subtitle {
+    @apply text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed;
+  }
+
+  /* Formulaires et inputs */
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl border-2 border-gray-200 
+           focus:border-blue-500 focus:ring-4 focus:ring-blue-200 focus:outline-none 
+           transition-all duration-200 bg-white/80 backdrop-blur-sm;
+  }
+
+  /* États de progression */
+  .progress-bar {
+    @apply w-full bg-gray-200 rounded-full h-3 overflow-hidden;
+  }
+
+  .progress-fill {
+    @apply bg-gradient-to-r from-blue-500 to-purple-600 h-full rounded-full 
+           transition-all duration-500 ease-out;
+  }
+
+  /* Effets visuels */
+  .glow-effect {
+    @apply shadow-lg shadow-blue-500/25;
+  }
+
+  .gradient-border {
+    @apply bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-0.5 rounded-2xl;
+  }
+
+  .gradient-border > div {
+    @apply bg-white rounded-2xl;
+  }
+
+  /* Responsive text */
+  .text-responsive {
+    @apply text-base sm:text-lg md:text-xl;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Amélioration de l'accessibilité */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Mode sombre (préparation) */
+@media (prefers-color-scheme: dark) {
+  .dark-mode {
+    @apply bg-gray-900 text-white;
+  }
+}
+
+/* Personnalisations pour les écrans haute définition */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .high-dpi {
+    @apply antialiased;
+  }
+}

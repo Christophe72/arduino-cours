@@ -1,0 +1,94 @@
+[
+  {
+    "id": "quiz-bases",
+    "title": "Quiz sur les bases d'Arduino",
+    "description": "Testez vos connaissances sur les concepts fondamentaux",
+    "difficulty": "Débutant",
+    "questions": [
+      {
+        "id": 1,
+        "question": "Quelle fonction est exécutée une seule fois au démarrage du programme ?",
+        "options": ["loop()", "setup()", "start()", "init()"],
+        "correctAnswer": 1,
+        "explanation": "La fonction setup() est exécutée une seule fois au démarrage, tandis que loop() s'exécute en boucle."
+      },
+      {
+        "id": 2,
+        "question": "Quelle est la tension de fonctionnement d'un Arduino Uno ?",
+        "options": ["3.3V", "5V", "12V", "9V"],
+        "correctAnswer": 1,
+        "explanation": "L'Arduino Uno fonctionne à 5V pour sa logique interne."
+      },
+      {
+        "id": 3,
+        "question": "Combien de broches numériques possède un Arduino Uno ?",
+        "options": ["10", "12", "14", "16"],
+        "correctAnswer": 2,
+        "explanation": "L'Arduino Uno possède 14 broches numériques (0 à 13)."
+      }
+    ]
+  },
+  {
+    "id": "quiz-entrees-sorties",
+    "title": "Quiz sur les entrées/sorties",
+    "description": "Évaluez votre compréhension des E/S numériques et analogiques",
+    "difficulty": "Intermédiaire",
+    "questions": [
+      {
+        "id": 1,
+        "question": "Quelle fonction permet de lire une valeur analogique ?",
+        "options": ["digitalRead()", "analogRead()", "readAnalog()", "getValue()"],
+        "correctAnswer": 1,
+        "explanation": "analogRead() permet de lire une valeur analogique sur les broches A0 à A5."
+      },
+      {
+        "id": 2,
+        "question": "Quelle est la résolution du convertisseur analogique-numérique d'Arduino ?",
+        "options": ["8 bits", "10 bits", "12 bits", "16 bits"],
+        "correctAnswer": 1,
+        "explanation": "Arduino Uno a un ADC de 10 bits, donnant des valeurs de 0 à 1023."
+      },
+      {
+        "id": 3,
+        "question": "Que signifie PWM ?",
+        "options": [
+          "Power Width Modulation",
+          "Pulse Width Modulation",
+          "Program Width Mode",
+          "Pin Width Management"
+        ],
+        "correctAnswer": 1,
+        "explanation": "PWM signifie Pulse Width Modulation (Modulation de Largeur d'Impulsion)."
+      }
+    ]
+  },
+  {
+    "id": "quiz-esp32",
+    "title": "Quiz ESP32",
+    "description": "Testez vos connaissances sur l'ESP32 et ses fonctionnalités",
+    "difficulty": "Avancé",
+    "questions": [
+      {
+        "id": 1,
+        "question": "Combien de cœurs de processeur possède l'ESP32 ?",
+        "options": ["1", "2", "4", "8"],
+        "correctAnswer": 1,
+        "explanation": "L'ESP32 possède 2 cœurs de processeur (dual-core)."
+      },
+      {
+        "id": 2,
+        "question": "Quelle bibliothèque est utilisée pour le WiFi sur ESP32 ?",
+        "options": ["WiFi.h", "ESP32WiFi.h", "WirelessESP32.h", "Network.h"],
+        "correctAnswer": 0,
+        "explanation": "WiFi.h est la bibliothèque standard pour gérer le WiFi sur ESP32."
+      },
+      {
+        "id": 3,
+        "question": "Quelle est la tension de fonctionnement logique de l'ESP32 ?",
+        "options": ["5V", "3.3V", "1.8V", "2.5V"],
+        "correctAnswer": 1,
+        "explanation": "L'ESP32 fonctionne à 3.3V pour sa logique, contrairement aux 5V d'Arduino Uno."
+      }
+    ]
+  }
+]

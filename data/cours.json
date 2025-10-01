@@ -1,0 +1,84 @@
+[
+  {
+    "id": "bases-arduino",
+    "title": "Les bases d'Arduino",
+    "description": "Introduction aux concepts fondamentaux d'Arduino",
+    "level": "Débutant",
+    "duration": "2h",
+    "icon": "📚",
+    "objectives": [
+      "Comprendre ce qu'est Arduino",
+      "Connaître les composants de base",
+      "Écrire votre premier programme",
+      "Utiliser les entrées/sorties numériques"
+    ],
+    "concepts": [
+      "Microcontrôleur",
+      "IDE Arduino",
+      "setup() et loop()",
+      "digitalWrite()",
+      "digitalRead()"
+    ],
+    "codeExample": "void setup() {\n  pinMode(13, OUTPUT);\n}\n\nvoid loop() {\n  digitalWrite(13, HIGH);\n  delay(1000);\n  digitalWrite(13, LOW);\n  delay(1000);\n}"
+  },
+  {
+    "id": "entrees-sorties",
+    "title": "Entrées et sorties",
+    "description": "Maîtriser les entrées et sorties numériques et analogiques",
+    "level": "Débutant",
+    "duration": "3h",
+    "icon": "🔌",
+    "objectives": [
+      "Différencier entrées et sorties",
+      "Utiliser les entrées analogiques",
+      "Lire des capteurs",
+      "Contrôler des actuateurs"
+    ],
+    "concepts": [
+      "analogRead()",
+      "analogWrite()",
+      "PWM",
+      "Résolution ADC",
+      "Pull-up/Pull-down"
+    ],
+    "codeExample": "int sensorPin = A0;\nint ledPin = 9;\n\nvoid setup() {\n  pinMode(ledPin, OUTPUT);\n}\n\nvoid loop() {\n  int sensorValue = analogRead(sensorPin);\n  int brightness = map(sensorValue, 0, 1023, 0, 255);\n  analogWrite(ledPin, brightness);\n}"
+  },
+  {
+    "id": "communication-serie",
+    "title": "Communication série",
+    "description": "Apprendre à communiquer avec l'ordinateur via le port série",
+    "level": "Intermédiaire",
+    "duration": "2h",
+    "icon": "💬",
+    "objectives": [
+      "Configurer la communication série",
+      "Envoyer des données vers l'ordinateur",
+      "Recevoir des commandes",
+      "Déboguer vos programmes"
+    ],
+    "concepts": [
+      "Serial.begin()",
+      "Serial.print()",
+      "Serial.read()",
+      "Moniteur série",
+      "Baudrate"
+    ],
+    "codeExample": "void setup() {\n  Serial.begin(9600);\n  pinMode(13, OUTPUT);\n}\n\nvoid loop() {\n  if (Serial.available()) {\n    char command = Serial.read();\n    if (command == '1') {\n      digitalWrite(13, HIGH);\n      Serial.println(\"LED allumée\");\n    } else if (command == '0') {\n      digitalWrite(13, LOW);\n      Serial.println(\"LED éteinte\");\n    }\n  }\n}"
+  },
+  {
+    "id": "esp32-basics",
+    "title": "Introduction à l'ESP32",
+    "description": "Découvrir les spécificités de l'ESP32 et ses capacités WiFi",
+    "level": "Intermédiaire",
+    "duration": "4h",
+    "icon": "📡",
+    "objectives": [
+      "Comprendre l'architecture ESP32",
+      "Configurer l'environnement de développement",
+      "Utiliser les fonctionnalités WiFi",
+      "Créer un serveur web simple"
+    ],
+    "concepts": ["WiFi.h", "WebServer", "GPIO ESP32", "Dual core", "SPIFFS"],
+    "codeExample": "#include <WiFi.h>\n#include <WebServer.h>\n\nconst char* ssid = \"VotreWiFi\";\nconst char* password = \"VotreMotDePasse\";\n\nWebServer server(80);\n\nvoid setup() {\n  Serial.begin(115200);\n  WiFi.begin(ssid, password);\n  \n  while (WiFi.status() != WL_CONNECTED) {\n    delay(1000);\n    Serial.println(\"Connexion WiFi...\");\n  }\n  \n  server.on(\"/\", handleRoot);\n  server.begin();\n}\n\nvoid loop() {\n  server.handleClient();\n}\n\nvoid handleRoot() {\n  server.send(200, \"text/html\", \"<h1>ESP32 Web Server</h1>\");\n}"
+  }
+]
